@@ -1,0 +1,293 @@
+---
+import WhatsAppLink from '@/components/ui/WhatsAppLink.astro';
+import { content } from '@/data/content';
+import { services } from '@/data/services';
+import { formatColones } from '@/utils/formatColones';
+---
+
+<section class="services-section" id="servicios" aria-labelledby="services-title">
+  <div class="services-layout page-shell">
+    <header class="services-intro">
+      <p class="eyebrow">{content.services.eyebrow}</p>
+      <h2 id="services-title">{content.services.title}</h2>
+      <p>{content.services.description}</p>
+      <p class="services-intro__note">{content.services.priceNote}</p>
+    </header>
+
+    <div class="service-explorer">
+      {
+        services.map((service, index) => (
+          <details
+            class="service-item"
+            id={service.id}
+            name="service-explorer"
+            open={service.featured}
+            data-featured={service.featured ? 'true' : undefined}
+          >
+            <summary>
+              <span class="service-item__index" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span class="service-item__summary-copy">
+                {service.featured && (
+                  <span class="service-item__featured-label">{content.services.featuredLabel}</span>
+                )}
+                <span class="service-item__title">{service.title}</span>
+                <span class="service-item__short-description">{service.shortDescription}</span>
+              </span>
+              <span class="service-item__price">
+                <span>{service.pricePrefix}</span>
+                <strong>{formatColones(service.startingPrice)}</strong>
+              </span>
+              <span class="service-item__toggle" aria-hidden="true" />
+            </summary>
+
+            <div class="service-item__content">
+              <p>{service.longDescription}</p>
+              <p class="service-item__examples-label">{content.services.examplesLabel}</p>
+              <ul>
+                {service.examples.map((example) => (
+                  <li>{example}</li>
+                ))}
+              </ul>
+              {service.diagnosticCredit && (
+                <p class="service-item__credit">{content.services.diagnosticCredit}</p>
+              )}
+              <WhatsAppLink
+                label={content.services.detailAction}
+                message={service.whatsappMessage}
+                variant="text"
+                accessibleLabel={`Consultar ${service.title} por WhatsApp`}
+              />
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    padding-block: var(--space-8);
+    border-block-end: var(--border-width) solid var(--color-border);
+    background: var(--color-surface-raised);
+  }
+
+  .services-layout {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .services-intro {
+    max-width: 34rem;
+  }
+
+  .services-intro h2 {
+    margin-block-end: var(--space-4);
+    font-size: var(--font-size-xl);
+    letter-spacing: -0.035em;
+  }
+
+  .services-intro > p:not(.eyebrow) {
+    color: var(--color-text-muted);
+  }
+
+  .services-intro__note {
+    padding-block-start: var(--space-5);
+    border-block-start: var(--border-width) solid var(--color-border);
+    margin-block-start: var(--space-6);
+    font-size: var(--font-size-sm);
+  }
+
+  .service-explorer {
+    min-width: 0;
+    border-block-start: var(--border-width) solid var(--color-border-strong);
+  }
+
+  .service-item {
+    border-block-end: var(--border-width) solid var(--color-border);
+    background: transparent;
+    transition: background-color var(--transition-standard);
+  }
+
+  .service-item[open] {
+    background: var(--color-surface);
+  }
+
+  .service-item[data-featured='true'] {
+    border-inline-start: 0.22rem solid var(--color-accent);
+  }
+
+  summary {
+    display: grid;
+    min-height: 6.5rem;
+    grid-template-columns: 2rem minmax(0, 1fr) auto 1.5rem;
+    align-items: start;
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-3);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:hover .service-item__title {
+    color: var(--color-accent);
+  }
+
+  .service-item__index {
+    padding-block-start: 0.2rem;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .service-item__summary-copy,
+  .service-item__price {
+    display: grid;
+  }
+
+  .service-item__featured-label {
+    width: fit-content;
+    padding: 0.15rem var(--space-2);
+    border-radius: var(--radius-pill);
+    margin-block-end: var(--space-2);
+    background: var(--color-surface-accent);
+    color: var(--color-accent);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .service-item__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    transition: color var(--transition-fast);
+  }
+
+  .service-item__short-description {
+    max-width: 43rem;
+    margin-block-start: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+  }
+
+  .service-item__price {
+    min-width: 6.7rem;
+    justify-items: end;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .service-item__price strong {
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+  }
+
+  .service-item__toggle {
+    position: relative;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    margin-block-start: 0.15rem;
+  }
+
+  .service-item__toggle::before,
+  .service-item__toggle::after {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    inline-size: 0.85rem;
+    block-size: 0.1rem;
+    background: currentColor;
+    content: '';
+    transform: translate(-50%, -50%);
+    transition: transform var(--transition-fast);
+  }
+
+  .service-item__toggle::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  details[open] .service-item__toggle::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .service-item__content {
+    max-width: 47rem;
+    padding: 0 var(--space-6) var(--space-6) 3.25rem;
+  }
+
+  .service-item__content > p:first-child {
+    color: var(--color-text-muted);
+  }
+
+  .service-item__examples-label {
+    margin-block: var(--space-5) var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .service-item__content ul {
+    display: grid;
+    gap: var(--space-2);
+    padding-inline-start: 1.2rem;
+    margin-block-end: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .service-item__content li::marker {
+    color: var(--color-accent);
+  }
+
+  .service-item__credit {
+    padding: var(--space-3) var(--space-4);
+    border-inline-start: 0.2rem solid var(--color-accent);
+    margin-block-end: var(--space-3);
+    background: var(--color-surface-accent);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  @media (min-width: 66rem) {
+    .services-layout {
+      grid-template-columns: minmax(17rem, 0.7fr) minmax(0, 1.5fr);
+      align-items: start;
+    }
+
+    .services-intro {
+      position: sticky;
+      inset-block-start: var(--space-5);
+    }
+  }
+
+  @media (max-width: 36rem) {
+    summary {
+      grid-template-columns: 1.6rem minmax(0, 1fr) 1.25rem;
+      gap: var(--space-2);
+      padding-inline: var(--space-2);
+    }
+
+    .service-item__price {
+      grid-column: 2;
+      justify-items: start;
+      margin-block-start: var(--space-2);
+    }
+
+    .service-item__toggle {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .service-item__content {
+      padding-inline: calc(1.6rem + var(--space-4)) var(--space-3);
+    }
+  }
+</style>

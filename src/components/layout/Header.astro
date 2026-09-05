@@ -1,0 +1,110 @@
+---
+import WhatsAppLink from '@/components/ui/WhatsAppLink.astro';
+import { siteConfig } from '@/config/siteConfig';
+import { content } from '@/data/content';
+---
+
+<header class="site-header">
+  <div class="site-header__inner page-shell">
+    <a class="site-brand" href="/" aria-label={`${siteConfig.siteName}, inicio`}>
+      <img src="/favicon.svg" alt="" width="36" height="36" />
+      <span>{siteConfig.siteName}</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="/#servicios">{content.navigation.services}</a>
+      <a href="/#proceso">{content.navigation.process}</a>
+      <a href="/#sobre-el-servicio">{content.navigation.trust}</a>
+    </nav>
+
+    <WhatsAppLink
+      label={content.navigation.contact}
+      message={content.finalCta.message}
+      accessibleLabel="Contactar por WhatsApp"
+    />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-block-end: var(--border-width) solid var(--color-border);
+    background: color-mix(in srgb, var(--color-background) 94%, transparent);
+  }
+
+  .site-header__inner {
+    display: grid;
+    min-height: var(--header-height);
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .site-brand {
+    display: inline-flex;
+    width: fit-content;
+    min-width: 0;
+    min-height: var(--control-min-size);
+    align-items: center;
+    gap: var(--space-3);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .site-brand img {
+    flex: 0 0 auto;
+    border-radius: 0.65rem;
+  }
+
+  .site-brand span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .site-nav {
+    display: none;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .site-nav a {
+    min-height: var(--control-min-size);
+    align-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+  }
+
+  .site-nav a:hover {
+    color: var(--color-text);
+  }
+
+  @media (min-width: 58rem) {
+    .site-header__inner {
+      grid-template-columns: minmax(12rem, 1fr) auto minmax(12rem, 1fr);
+    }
+
+    .site-nav {
+      display: flex;
+    }
+
+    .site-header :global(.whatsapp-link) {
+      justify-self: end;
+    }
+  }
+
+  @media (max-width: 25rem) {
+    .site-brand span {
+      max-width: 8rem;
+    }
+
+    .site-header :global(.whatsapp-link) {
+      padding-inline: var(--space-3);
+    }
+  }
+</style>

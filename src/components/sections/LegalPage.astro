@@ -1,0 +1,36 @@
+---
+interface LegalSection {
+  title: string;
+  paragraphs: readonly string[];
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  sections: readonly LegalSection[];
+}
+
+const { eyebrow, title, intro, sections } = Astro.props;
+---
+
+<article class="legal-page page-shell">
+  <header class="legal-page__header">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p>{intro}</p>
+  </header>
+
+  <div class="legal-page__grid">
+    {
+      sections.map((section) => (
+        <section class="legal-section">
+          <h2>{section.title}</h2>
+          {section.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </section>
+      ))
+    }
+  </div>
+</article>

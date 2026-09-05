@@ -1,0 +1,15 @@
+---
+import ClosingPanel from '@/components/sections/ClosingPanel.astro';
+import Hero from '@/components/sections/Hero.astro';
+import ProcessAndTrust from '@/components/sections/ProcessAndTrust.astro';
+import ServiceExplorer from '@/components/services/ServiceExplorer.astro';
+import { content } from '@/data/content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={content.homeSeo.title} description={content.homeSeo.description}>
+  <Hero />
+  <ServiceExplorer />
+  <ProcessAndTrust />
+  <ClosingPanel />
+</BaseLayout>

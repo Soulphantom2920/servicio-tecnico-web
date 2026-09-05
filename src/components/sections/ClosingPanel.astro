@@ -1,0 +1,136 @@
+---
+import WhatsAppLink from '@/components/ui/WhatsAppLink.astro';
+import { content } from '@/data/content';
+---
+
+<section class="closing" id="contacto" aria-labelledby="closing-title">
+  <div class="closing__inner page-shell">
+    <aside class="scope-note" aria-labelledby="scope-title">
+      <div class="scope-note__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <path
+            d="M12 3v10m0 4v.01"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2"></path>
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"
+          ></circle>
+        </svg>
+      </div>
+      <div>
+        <h2 id="scope-title">{content.scope.title}</h2>
+        <p>{content.scope.body}</p>
+        <p class="scope-note__detail">{content.scope.note}</p>
+      </div>
+    </aside>
+
+    <div class="closing-cta">
+      <div>
+        <p class="eyebrow">{content.finalCta.eyebrow}</p>
+        <h2 id="closing-title">{content.finalCta.title}</h2>
+      </div>
+      <div class="closing-cta__action">
+        <p>{content.finalCta.body}</p>
+        <WhatsAppLink label={content.finalCta.action} message={content.finalCta.message} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .closing {
+    padding-block: var(--space-8);
+    background: var(--color-surface-raised);
+  }
+
+  .closing__inner {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .scope-note {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .scope-note__mark {
+    display: grid;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-surface-accent);
+    color: var(--color-accent);
+  }
+
+  .scope-note h2 {
+    margin-block-end: var(--space-2);
+    font-size: var(--font-size-lg);
+  }
+
+  .scope-note p {
+    max-width: 60rem;
+    margin-block-end: var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  .scope-note__detail {
+    margin: 0;
+    font-size: var(--font-size-sm);
+  }
+
+  .closing-cta {
+    display: grid;
+    gap: var(--space-6);
+    padding: clamp(1.5rem, 5vw, 4rem);
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--color-text);
+    color: var(--color-background);
+  }
+
+  .closing-cta :global(.eyebrow) {
+    color: var(--color-background-tint);
+  }
+
+  .closing-cta h2 {
+    max-width: 18ch;
+    margin: 0;
+    font-size: var(--font-size-xl);
+    letter-spacing: -0.04em;
+  }
+
+  .closing-cta__action {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-5);
+  }
+
+  .closing-cta__action p {
+    max-width: 33rem;
+    margin: 0;
+    color: color-mix(in srgb, var(--color-background) 78%, transparent);
+  }
+
+  .closing-cta :global(.whatsapp-link--primary) {
+    background: var(--color-background);
+    color: var(--color-text);
+  }
+
+  .closing-cta :global(.whatsapp-link--primary:hover) {
+    background: var(--color-background-tint);
+  }
+
+  @media (min-width: 58rem) {
+    .closing-cta {
+      grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.75fr);
+      align-items: end;
+    }
+  }
+</style>

@@ -1,0 +1,180 @@
+---
+import { content } from '@/data/content';
+---
+
+<section class="process-trust" id="proceso" aria-labelledby="process-title">
+  <div class="process-trust__layout page-shell">
+    <div class="process-panel">
+      <header>
+        <p class="eyebrow">{content.process.eyebrow}</p>
+        <h2 id="process-title">{content.process.title}</h2>
+        <p>{content.process.description}</p>
+      </header>
+
+      <ol class="process-list">
+        {
+          content.process.steps.map((step, index) => (
+            <li>
+              <span class="process-list__number" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <aside class="trust-panel" id="sobre-el-servicio" aria-labelledby="trust-title">
+      <p class="eyebrow">{content.trust.eyebrow}</p>
+      <h2 id="trust-title">{content.trust.title}</h2>
+      <p class="trust-panel__intro">{content.trust.intro}</p>
+      <p class="trust-panel__body">{content.trust.body}</p>
+
+      <ul class="trust-list">
+        {
+          content.trust.principles.map((principle) => (
+            <li>
+              <span aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="20" height="20">
+                  <path
+                    d="m5 10 3 3 7-7"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
+                </svg>
+              </span>
+              <div>
+                <h3>{principle.title}</h3>
+                <p>{principle.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .process-trust {
+    padding-block: var(--space-8);
+    border-block-end: var(--border-width) solid var(--color-border);
+    background: var(--color-background);
+  }
+
+  .process-trust__layout {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .process-panel > header {
+    max-width: 38rem;
+    margin-block-end: var(--space-6);
+  }
+
+  .process-panel h2,
+  .trust-panel h2 {
+    margin-block-end: var(--space-4);
+    font-size: var(--font-size-xl);
+    letter-spacing: -0.035em;
+  }
+
+  .process-panel > header > p:last-child,
+  .trust-panel__body {
+    color: var(--color-text-muted);
+  }
+
+  .process-list {
+    display: grid;
+    gap: var(--space-3);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .process-list li {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-4) 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .process-list__number {
+    color: var(--color-accent);
+    font-size: var(--font-size-xs);
+    font-variant-numeric: tabular-nums;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .process-list h3,
+  .trust-list h3 {
+    margin-block-end: var(--space-1);
+    font-size: var(--font-size-base);
+  }
+
+  .process-list p,
+  .trust-list p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .trust-panel {
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: var(--border-width) solid var(--color-border-strong);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-accent);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .trust-panel__intro {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .trust-list {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-5) 0 0;
+    border-block-start: var(--border-width) solid var(--color-border-strong);
+    margin: var(--space-6) 0 0;
+    list-style: none;
+  }
+
+  .trust-list li {
+    display: grid;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .trust-list li > span {
+    display: grid;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  @media (min-width: 44rem) and (max-width: 63.99rem) {
+    .process-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .process-trust__layout {
+      grid-template-columns: minmax(0, 1.08fr) minmax(22rem, 0.92fr);
+      align-items: start;
+    }
+  }
+</style>

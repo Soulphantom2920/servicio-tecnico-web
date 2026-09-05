@@ -1,0 +1,203 @@
+---
+import WhatsAppLink from '@/components/ui/WhatsAppLink.astro';
+import { content } from '@/data/content';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__inner page-shell">
+    <div class="hero__copy">
+      <p class="eyebrow">{content.hero.eyebrow}</p>
+      <h1 id="hero-title">{content.hero.title}</h1>
+      <p class="hero__description">{content.hero.description}</p>
+
+      <div class="hero__actions">
+        <WhatsAppLink label={content.hero.primaryAction} message={content.finalCta.message} />
+        <a class="hero__secondary-action" href="#servicios">{content.hero.secondaryAction}</a>
+      </div>
+
+      <ul class="hero__signals" aria-label="Principios del servicio">
+        {content.hero.signals.map((signal) => <li>{signal}</li>)}
+      </ul>
+    </div>
+
+    <aside class="hero-card" aria-label={content.hero.cardLabel}>
+      <div class="hero-card__topline">
+        <span>{content.hero.cardLabel}</span>
+        <span aria-hidden="true">01—03</span>
+      </div>
+      <h2>{content.hero.cardTitle}</h2>
+      <p>{content.hero.cardBody}</p>
+      <ol>
+        {
+          content.hero.cardSteps.map((step, index) => (
+            <li>
+              <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              {step}
+            </li>
+          ))
+        }
+      </ol>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: clip;
+    border-block-end: var(--border-width) solid var(--color-border);
+    background:
+      radial-gradient(circle at 88% 18%, var(--color-surface-accent), transparent 31rem),
+      linear-gradient(145deg, var(--color-background), var(--color-background-tint));
+  }
+
+  .hero::before {
+    position: absolute;
+    inline-size: 22rem;
+    block-size: 22rem;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: 50%;
+    content: '';
+    inset-block-start: -15rem;
+    inset-inline-end: -8rem;
+    pointer-events: none;
+  }
+
+  .hero__inner {
+    position: relative;
+    display: grid;
+    gap: var(--space-7);
+    padding-block: clamp(3.5rem, 8vw, 7.5rem);
+  }
+
+  .hero__copy {
+    max-width: 46rem;
+  }
+
+  h1 {
+    max-width: 11ch;
+    margin-block-end: var(--space-5);
+    font-size: var(--font-size-hero);
+    font-weight: var(--font-weight-display);
+    letter-spacing: -0.055em;
+    line-height: var(--line-height-tight);
+  }
+
+  .hero__description {
+    max-width: 39rem;
+    margin-block-end: var(--space-6);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-block-end: var(--space-6);
+  }
+
+  .hero__secondary-action {
+    display: inline-flex;
+    min-height: var(--control-min-size);
+    align-items: center;
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-pill);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .hero__signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    padding: 0;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    list-style: none;
+  }
+
+  .hero__signals li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .hero__signals li::before {
+    inline-size: 0.42rem;
+    block-size: 0.42rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    content: '';
+  }
+
+  .hero-card {
+    max-width: 31rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: var(--border-width) solid var(--color-border-strong);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero-card__topline {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-block-end: var(--space-6);
+    color: var(--color-accent);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-card h2 {
+    max-width: 15ch;
+    margin-block-end: var(--space-3);
+    font-size: var(--font-size-xl);
+    letter-spacing: -0.035em;
+  }
+
+  .hero-card p {
+    margin-block-end: var(--space-6);
+    color: var(--color-text-muted);
+  }
+
+  .hero-card ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .hero-card li {
+    display: grid;
+    min-height: var(--control-min-size);
+    grid-template-columns: 2rem 1fr;
+    align-items: center;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+    border-block-start: var(--border-width) solid var(--color-border);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .hero-card li span {
+    color: var(--color-accent);
+    font-size: var(--font-size-xs);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (min-width: 62rem) {
+    .hero__inner {
+      grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.75fr);
+      align-items: center;
+    }
+
+    .hero-card {
+      justify-self: end;
+    }
+  }
+</style>

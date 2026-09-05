@@ -1,0 +1,91 @@
+---
+import { siteConfig } from '@/config/siteConfig';
+import { content } from '@/data/content';
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner page-shell">
+    <div>
+      <p class="site-footer__name">{siteConfig.siteName}</p>
+      <p class="site-footer__summary">{content.footer.summary}</p>
+    </div>
+
+    <nav aria-label="Información legal">
+      <a href="/privacidad/">{content.footer.privacy}</a>
+      <a href="/condiciones/">{content.footer.terms}</a>
+    </nav>
+
+    <div class="site-footer__meta">
+      <p>{siteConfig.location}</p>
+      {
+        (siteConfig.identityIsPlaceholder || siteConfig.contactIsPlaceholder) && (
+          <p class="site-footer__placeholder">{content.footer.placeholderNotice}</p>
+        )
+      }
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-block-start: var(--border-width) solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: var(--space-5);
+    padding-block: var(--space-6);
+  }
+
+  .site-footer p {
+    margin: 0;
+  }
+
+  .site-footer__name {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .site-footer__summary,
+  .site-footer__meta {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+  }
+
+  nav a {
+    min-height: var(--control-min-size);
+    align-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .site-footer__meta {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .site-footer__placeholder {
+    max-width: 28rem;
+    color: var(--color-focus);
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer__inner {
+      grid-template-columns: 1.15fr auto 1fr;
+      align-items: start;
+    }
+
+    .site-footer__meta {
+      justify-items: end;
+      text-align: end;
+    }
+  }
+</style>

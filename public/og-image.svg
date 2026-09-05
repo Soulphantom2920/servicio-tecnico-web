@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Tu computadora, sin complicaciones</title>
+  <desc id="desc">Imagen social provisional con tipografía sobria y una composición abstracta.</desc>
+  <rect width="1200" height="630" fill="#F4F2EB" />
+  <circle cx="1090" cy="82" r="170" fill="#DCE5DF" />
+  <rect x="70" y="84" width="72" height="9" rx="4.5" fill="#D79A56" />
+  <text x="70" y="255" fill="#172522" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="72" font-weight="650" letter-spacing="-2.2">
+    <tspan x="70" dy="0">Tu computadora,</tspan>
+    <tspan x="70" dy="88">sin complicaciones</tspan>
+  </text>
+  <g transform="translate(836 126)">
+    <rect width="292" height="378" rx="54" fill="#172522" />
+    <path d="M50 113c57-67 87 31 139-11 26-21 47-23 69-13" fill="none" stroke="#EDF0E9" stroke-width="28" stroke-linecap="round" />
+    <path d="M50 190c57-61 91 31 139-8 25-20 47-22 69-12" fill="none" stroke="#D79A56" stroke-width="28" stroke-linecap="round" />
+    <path d="M50 267c57-55 91 32 139-5 25-19 47-20 69-10" fill="none" stroke="#8EAAA2" stroke-width="28" stroke-linecap="round" />
+  </g>
+  <rect x="70" y="523" width="668" height="1" fill="#CDD6D0" />
+</svg>

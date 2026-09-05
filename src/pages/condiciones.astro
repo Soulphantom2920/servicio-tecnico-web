@@ -1,0 +1,14 @@
+---
+import LegalPage from '@/components/sections/LegalPage.astro';
+import { content } from '@/data/content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={content.terms.seoTitle} description={content.terms.description}>
+  <LegalPage
+    eyebrow={content.terms.eyebrow}
+    title={content.terms.title}
+    intro={content.terms.intro}
+    sections={content.terms.sections}
+  />
+</BaseLayout>

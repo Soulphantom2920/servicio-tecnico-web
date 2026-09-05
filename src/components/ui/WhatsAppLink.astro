@@ -1,0 +1,103 @@
+---
+import { siteConfig } from '@/config/siteConfig';
+import { buildWhatsAppUrl } from '@/utils/buildWhatsAppUrl';
+
+interface Props {
+  label: string;
+  message: string;
+  variant?: 'primary' | 'secondary' | 'text';
+  accessibleLabel?: string;
+}
+
+const { label, message, variant = 'primary', accessibleLabel } = Astro.props;
+const resolvedAccessibleLabel =
+  accessibleLabel ?? (/whatsapp/i.test(label) ? label : `${label} por WhatsApp`);
+const href = buildWhatsAppUrl(siteConfig.whatsappNumber, message);
+---
+
+<a
+  class:list={['whatsapp-link', `whatsapp-link--${variant}`]}
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={`${resolvedAccessibleLabel} (abre en una pestaña nueva)`}
+  data-contact-placeholder={siteConfig.contactIsPlaceholder ? 'true' : undefined}
+>
+  <span>{label}</span>
+  <svg viewBox="0 0 20 20" aria-hidden="true" width="20" height="20">
+    <path
+      d="M4 10h11M11 6l4 4-4 4"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.8"></path>
+  </svg>
+</a>
+
+<style>
+  .whatsapp-link {
+    display: inline-flex;
+    min-height: var(--control-min-size);
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: 0.68rem var(--space-4);
+    border: var(--border-width) solid transparent;
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+      background-color var(--transition-fast),
+      border-color var(--transition-fast),
+      color var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  .whatsapp-link:hover {
+    text-decoration: none;
+  }
+
+  .whatsapp-link:active {
+    transform: translateY(1px);
+  }
+
+  .whatsapp-link--primary {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  .whatsapp-link--primary:hover {
+    background: var(--color-accent-hover);
+  }
+
+  .whatsapp-link--secondary {
+    border-color: var(--color-border-strong);
+    background: transparent;
+    color: var(--color-text);
+  }
+
+  .whatsapp-link--secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .whatsapp-link--text {
+    min-height: var(--control-min-size);
+    padding-inline: 0;
+    border-radius: var(--radius-sm);
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  }
+
+  .whatsapp-link--text:hover {
+    color: var(--color-accent-hover);
+  }
+
+  svg {
+    flex: 0 0 auto;
+  }
+</style>

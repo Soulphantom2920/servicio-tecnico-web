@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Marca provisional del sitio</title>
+  <desc id="desc">Tres trazos suaves que convergen de forma ordenada.</desc>
+  <rect width="64" height="64" rx="16" fill="#172522" />
+  <path d="M13 20c9-10 14 5 23-2 5-4 9-4 15-1" fill="none" stroke="#EDF0E9" stroke-width="6" stroke-linecap="round" />
+  <path d="M13 32c9-9 15 5 23-1 5-4 9-4 15-1" fill="none" stroke="#D79A56" stroke-width="6" stroke-linecap="round" />
+  <path d="M13 44c9-8 15 5 23-1 5-3 9-3 15-1" fill="none" stroke="#8EAAA2" stroke-width="6" stroke-linecap="round" />
+</svg>

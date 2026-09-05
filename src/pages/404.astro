@@ -1,0 +1,64 @@
+---
+import { content } from '@/data/content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={content.notFound.seoTitle} description={content.notFound.body} noindex>
+  <section class="not-found page-shell" aria-labelledby="not-found-title">
+    <p class="not-found__code" aria-hidden="true">404</p>
+    <div>
+      <p class="eyebrow">{content.notFound.seoTitle}</p>
+      <h1 id="not-found-title">{content.notFound.title}</h1>
+      <p>{content.notFound.body}</p>
+      <a href="/">{content.notFound.action}</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    display: grid;
+    min-height: 65vh;
+    align-items: center;
+    gap: var(--space-6);
+    padding-block: var(--space-8);
+  }
+
+  .not-found__code {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: clamp(6rem, 28vw, 15rem);
+    font-weight: var(--font-weight-display);
+    letter-spacing: -0.09em;
+    line-height: 0.75;
+  }
+
+  .not-found h1 {
+    margin-block-end: var(--space-3);
+    font-size: var(--font-size-xl);
+  }
+
+  .not-found div > p:not(.eyebrow) {
+    margin-block-end: var(--space-5);
+    color: var(--color-text-muted);
+  }
+
+  .not-found a {
+    display: inline-flex;
+    min-height: var(--control-min-size);
+    align-items: center;
+    padding: 0.65rem var(--space-4);
+    border-radius: var(--radius-pill);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+  }
+
+  @media (min-width: 48rem) {
+    .not-found {
+      grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1fr);
+    }
+  }
+</style>
