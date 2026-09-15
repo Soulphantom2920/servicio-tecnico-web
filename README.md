@@ -12,7 +12,8 @@ La especificación está cerrada y se encuentra en [docs/requirements.md](docs/r
 - Interacción principal: `<details>`/`<summary>` con mejora progresiva.
 - Canal de contacto: WhatsApp mediante configuración centralizada.
 - Hosting previsto: Cloudflare Pages, todavía sin crear el proyecto definitivo.
-- Datos pendientes: identidad pública, número de WhatsApp y URL de producción.
+- Nombre comercial confirmado: **Opal Bitwise**.
+- Datos aún pendientes: identidad pública del prestador, número de WhatsApp y URL de producción.
 
 Mientras esos datos no estén confirmados, el proyecto debe conservar placeholders claros y no permitir indexación de una preview como si fuera producción.
 

@@ -265,11 +265,10 @@ La v1 está terminada cuando:
 - las licencias de todos los assets están verificadas;
 - CI reproduce instalación, análisis, build y pruebas;
 - README, arquitectura, convenciones y pendientes reflejan el estado real;
-- no se crea todavía el proyecto definitivo `*.pages.dev` mientras nombre, WhatsApp y URL sigan pendientes.
+- no se crea todavía el proyecto definitivo `*.pages.dev` mientras WhatsApp y URL de producción sigan pendientes.
 
 ## 11. Datos pendientes antes de publicar
 
-- nombre comercial definitivo;
 - nombre público del prestador, si se mostrará;
 - número de WhatsApp en formato internacional;
 - URL pública de producción;

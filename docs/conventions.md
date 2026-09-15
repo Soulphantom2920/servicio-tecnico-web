@@ -18,7 +18,7 @@ Estas reglas mantienen la v1 editable, predecible y pequeña. Aplican a código,
 | Constantes exportadas    | `camelCase` salvo constante verdaderamente global           | `siteConfig`, `services`           |
 | CSS global               | minúsculas                                                  | `tokens.css`, `base.css`           |
 | Clases CSS               | semánticas, minúsculas y con guion                          | `.service-summary`                 |
-| Assets                   | `kebab-case` descriptivo                                    | `og-image.svg`                     |
+| Assets                   | `kebab-case` descriptivo                                    | `opal-bitwise-og-image.png         |
 
 No se usan nombres temporales como `final2.svg`, `new-new-icon` o `IMG_12345`. No se crean barrel files (`index.ts`) salvo que simplifiquen de forma demostrable una API estable; en este tamaño se prefieren imports directos.
 

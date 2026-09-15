@@ -90,13 +90,13 @@ import { content } from '@/data/content';
     gap: var(--space-6);
     padding: clamp(1.5rem, 5vw, 4rem);
     overflow: hidden;
+    border: var(--border-width) solid var(--color-border-strong);
     border-radius: var(--radius-lg);
-    background: var(--color-text);
-    color: var(--color-background);
-  }
-
-  .closing-cta :global(.eyebrow) {
-    color: var(--color-background-tint);
+    background:
+      radial-gradient(circle at 88% 20%, var(--color-ambient-secondary), transparent 24rem),
+      radial-gradient(circle at 72% 100%, var(--color-ambient-primary), transparent 28rem),
+      var(--color-surface);
+    color: var(--color-text);
   }
 
   .closing-cta h2 {
@@ -115,16 +115,7 @@ import { content } from '@/data/content';
   .closing-cta__action p {
     max-width: 33rem;
     margin: 0;
-    color: color-mix(in srgb, var(--color-background) 78%, transparent);
-  }
-
-  .closing-cta :global(.whatsapp-link--primary) {
-    background: var(--color-background);
-    color: var(--color-text);
-  }
-
-  .closing-cta :global(.whatsapp-link--primary:hover) {
-    background: var(--color-background-tint);
+    color: var(--color-text-muted);
   }
 
   @media (min-width: 58rem) {

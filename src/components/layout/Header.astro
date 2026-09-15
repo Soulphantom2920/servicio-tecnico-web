@@ -7,8 +7,15 @@ import { content } from '@/data/content';
 <header class="site-header">
   <div class="site-header__inner page-shell">
     <a class="site-brand" href="/" aria-label={`${siteConfig.siteName}, inicio`}>
-      <img src="/favicon.svg" alt="" width="36" height="36" />
-      <span>{siteConfig.siteName}</span>
+      <picture class="site-brand__visual">
+        <source
+          srcset={siteConfig.brand.symbol.dark.svg}
+          media="(max-width: 25rem) and (prefers-color-scheme: dark)"
+        />
+        <source srcset={siteConfig.brand.symbol.light.svg} media="(max-width: 25rem)" />
+        <source srcset={siteConfig.brand.logo.dark} media="(prefers-color-scheme: dark)" />
+        <img src={siteConfig.brand.logo.light} alt="" width="2400" height="414" />
+      </picture>
     </a>
 
     <nav class="site-nav" aria-label="Navegación principal">
@@ -45,23 +52,21 @@ import { content } from '@/data/content';
     min-width: 0;
     min-height: var(--control-min-size);
     align-items: center;
-    gap: var(--space-3);
     border-radius: var(--radius-sm);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: -0.01em;
     text-decoration: none;
   }
 
-  .site-brand img {
-    flex: 0 0 auto;
-    border-radius: 0.65rem;
+  .site-brand__visual {
+    display: block;
+    width: 13rem;
+    aspect-ratio: 2400 / 414;
   }
 
-  .site-brand span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .site-brand__visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .site-nav {
@@ -99,8 +104,9 @@ import { content } from '@/data/content';
   }
 
   @media (max-width: 25rem) {
-    .site-brand span {
-      max-width: 8rem;
+    .site-brand__visual {
+      width: 2.5rem;
+      aspect-ratio: 473.42316 / 516.27679;
     }
 
     .site-header :global(.whatsapp-link) {

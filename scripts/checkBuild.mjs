@@ -80,15 +80,47 @@ assertBuild(
 const requiredFiles = [
   '404.html',
   '_headers',
-  'favicon.svg',
-  'og-image.png',
-  'og-image.svg',
   'robots.txt',
+
+  'brand/logo/opal-bitwise-horizontal-black-opal.png',
+  'brand/logo/opal-bitwise-horizontal-white-opal.png',
+
+  'brand/symbol/opal-bitwise-symbol-black-opal.svg',
+  'brand/symbol/opal-bitwise-symbol-black-opal.png',
+  'brand/symbol/opal-bitwise-symbol-white-opal.svg',
+  'brand/symbol/opal-bitwise-symbol-white-opal.png',
+
+  'brand/favicon/black/favicon-black-opal-16.png',
+  'brand/favicon/black/favicon-black-opal-32.png',
+  'brand/favicon/black/favicon-black-opal-48.png',
+  'brand/favicon/black/favicon-black-opal-64.png',
+  'brand/favicon/black/favicon-black-opal-180.png',
+  'brand/favicon/black/favicon-black-opal-192.png',
+  'brand/favicon/black/favicon-black-opal-512.png',
+
+  'brand/favicon/white/favicon-white-opal-16.png',
+  'brand/favicon/white/favicon-white-opal-32.png',
+  'brand/favicon/white/favicon-white-opal-48.png',
+  'brand/favicon/white/favicon-white-opal-64.png',
+  'brand/favicon/white/favicon-white-opal-180.png',
+  'brand/favicon/white/favicon-white-opal-192.png',
+  'brand/favicon/white/favicon-white-opal-512.png',
+
+  'brand/social/opal-bitwise-og-image.png',
 ];
 for (const requiredFile of requiredFiles) {
   assertBuild(
     files.some((file) => relative(distRoot, file).replaceAll('\\', '/') === requiredFile),
     `Falta dist/${requiredFile}.`,
+  );
+}
+
+const obsoleteFiles = ['favicon.svg', 'og-image.png', 'og-image.svg'];
+
+for (const obsoleteFile of obsoleteFiles) {
+  assertBuild(
+    !files.some((file) => relative(distRoot, file).replaceAll('\\', '/') === obsoleteFile),
+    `El build todavía contiene el asset provisional dist/${obsoleteFile}.`,
   );
 }
 

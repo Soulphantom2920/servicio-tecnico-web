@@ -10,13 +10,16 @@
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
-/favicon.svg
+/brand/logo/*
   Cache-Control: public, max-age=86400
 
-/og-image.svg
-  Cache-Control: public, max-age=3600
+/brand/symbol/*
+  Cache-Control: public, max-age=86400
 
-/og-image.png
+/brand/favicon/*
+  Cache-Control: public, max-age=86400
+
+/brand/social/*
   Cache-Control: public, max-age=3600
 
 /robots.txt
